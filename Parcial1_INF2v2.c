@@ -34,15 +34,15 @@ void ingresar_semaforo(Calles *s) {
     } while (s->trafico < 1 || s->trafico > 100);
 }
 //pide al usuario que ingrese la cantidad de semaforos a registrar
-int menu(Calles *semaforo) {
+int menu(Calles *semaforo, int cantidad_actual) {
     int cantidad;
     printf("Ingrese cantidad de semaforos a registrar: ");
     scanf("%d", &cantidad);
     for (int i = 0; i < cantidad; i++) {
-        printf("Registro de semaforo %d:\n", i + 1);
-        ingresar_semaforo(&semaforo[i]);  //direccion de semaforo
+        printf("Registro de semaforo %d:\n", cantidad_actual + i + 1);
+        ingresar_semaforo(&semaforo[cantidad_actual + i]);  //direccion de semaforo
     }
-    return cantidad; //devuelve la cantidad de semaforos registrados 
+    return cantidad_actual + cantidad; //devuelve la cantidad de semaforos registrados 
 }
 //recorre el arreglo con un for y muestra cada semaforo 
 void mostrar_todos(Calles semaforo[], int cantidad) {
@@ -91,7 +91,7 @@ int main() {
 
         switch (opcion) {
             case 1:
-                cantidad = menu(semaforo);
+                cantidad = menu(semaforo, cantidad);
                 break;
             case 2:
                 mostrar_todos(semaforo, cantidad);
@@ -106,5 +106,6 @@ int main() {
                 printf("Error: Opcion invalida.\n");
         }
     } while (opcion != 4);
+    free(semaforo);
     return 0;
 }
