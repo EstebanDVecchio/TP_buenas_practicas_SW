@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -63,14 +62,14 @@ void buscar_por_calle(Calles semaforo[], int cantidad) {
     scanf("%s", calle);
     printf("Intersecciones para la calle %s:\n", calle);
     for (int i = 0; i < cantidad; i++) {
-        if (strcmp(semaforo[i].Calle1, calle) == 0 || strcmp(semaforo[i].Calle2, calle) == 0) {
+        if (strstr(semaforo[i].Calle1, calle) != NULL || strstr(semaforo[i].Calle2, calle) != NULL) {
             printf("Semaforo %d:\n", i + 1);
             mostrar_datos(semaforo[i]);
             encontrado = 1;
         }
     }
     if (!encontrado) {
-        printf("No se encontraron intersecciones para la calle\n", calle);
+        printf("No se encontraron intersecciones para la calle %s\n", calle);
     }
 }
 
