@@ -20,17 +20,18 @@ void mostrar_datos(Calles c) {
 //pide al usuario los datos de un semaforo y los guarda en la estructura
 void ingresar_semaforo(Calles *s) {
     printf("Ingrese nombre de la Calle 1: ");
+    scanf("%s", s->Calle1);
     printf("Ingrese nombre de la Calle 2: ");
     scanf("%s", s->Calle2);
-    //do while para validar que el trafico este entre 0 y 100, sino muestra un error
+    //do while para validar que el trafico este entre 1 y 100, sino muestra un error
     do {
-        printf("Ingrese intensidad de trafico (máximo 100): ");
+        printf("Ingrese intensidad de trafico (entre 1 y 100): ");
         scanf("%d", &s->trafico);
-        if (s->trafico < 0 || s->trafico > 100) {
+        if (s->trafico < 1 || s->trafico > 100) {
             printf("Error\n");
         }
-      //entre 0 y 100
-    } while (s->trafico < 0 || s->trafico > 100);
+      //entre 1 y 100
+    } while (s->trafico < 1 || s->trafico > 100);
 }
 //pide al usuario que ingrese la cantidad de semaforos a registrar
 int menu(Calles *semaforo) {
